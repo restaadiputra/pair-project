@@ -1,0 +1,28 @@
+{
+  "name": "pair-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/restaadiputra/pair-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/restaadiputra/pair-project/issues"
+  },
+  "homepage": "https://github.com/restaadiputra/pair-project#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cron": "^1.6.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "pg": "^7.8.1",
+    "sequelize": "^4.42.1"
+  }
+}
