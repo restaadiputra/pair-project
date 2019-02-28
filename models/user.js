@@ -1,5 +1,3 @@
-const hashpassword = require('../helpers/bcrypt').hashPassword
-
 'use strict';
 const bcrypt = require('bcryptjs')
 const Op = require('sequelize').Op
