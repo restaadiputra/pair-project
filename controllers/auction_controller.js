@@ -73,6 +73,9 @@ class AuctionController {
       })
     })
     .then(() => {
+      res.redirect('/dashboard/bid')
+    })
+    .catch(err =>{
       res.redirect('/')
     })
   }

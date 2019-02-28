@@ -21,10 +21,21 @@
           <input name="yearProduction" class="u-full-width" type="number" min="1800" max="2099" step="1" placeholder="year production" id="yearProduction" value="<%=register === null ? '' : register.yearProduction%>">
 
           <label for="origin">Origin Country</label>
-          <input name="origin" class="u-full-width" type="text" placeholder="origin" id="origin" value="<%=register === null ? '' : register.origin%>">
+          
+          <select name="origin" id="origin">
+              <option disabled selected>origin</option>
+              <%
+              countries.forEach(c => {
+              %>
+              <option value="<%=c.name%>"><%=c.name%></option>
+              <%})%>
+            </select>
 
-          <label for="myImage">Image</label>
-          <input name="myImage" class="u-full-width" type="file" id="myImage" >          
+
+
+
+          <label for="img">Image</label>
+          <input name="img" class="u-full-width" type="file" id="img" >          
 
         </div>
         <div class="six columns offset-by-three">

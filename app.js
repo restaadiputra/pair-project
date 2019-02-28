@@ -2,9 +2,10 @@ const express = require('express')
 const app     = express()
 const routes  = require('./routes')
 const session = require('express-session')
-var multer = require('multer')
-const ejs = require('ejs')
-const path = require('path')
+const multer  = require('multer')
+const ejs     = require('ejs')
+const path    = require('path')
+const port    = process.env.PORT || 4000
 
 const sess = {
   key: 'user_sid',
@@ -22,9 +23,8 @@ const storage = multer.diskStorage({
 // init upload
 const upload = multer({
   storage: storage
-}).single('myImage')
+}).single('img')
 
-// const fileUpload = multer({storage});
 
 app.use('/*', upload);
 
@@ -37,6 +37,6 @@ app.use(session(sess))
 
 
 app.use('/', routes)
-app.listen(3000, () => {
-  console.log('Running at http://localhost:3000')
+app.listen(port, () => {
+  console.log('Running at PORT:3000')
 })

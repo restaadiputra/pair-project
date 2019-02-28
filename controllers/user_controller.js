@@ -1,4 +1,4 @@
-const { Auction, Bid, Car, User } = require('../models')
+const { Auction, Bid, Car, User, Country } = require('../models')
 const multer = require('multer')
 const path = require('path')
 
@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage: storage
-}).single('myImage')
+}).single('img')
 
 class UserController {  
   static dashboard(req, res, next) {
@@ -35,15 +35,6 @@ class UserController {
         },
         user
       })
-
-      // res.send({
-      //   page: {
-      //     title: 'Dasboard',
-      //     status: true,
-      //     name: user.name
-      //   },
-      //   user
-      // })
     })
     .catch(err => {
       console.log('ERROR HERAE',err)
@@ -52,14 +43,22 @@ class UserController {
   }
 
   static addNewCarForm(req, res) {
-    res.render('pages/dashboard/addCar', {
-      page: {
-        title: 'Add New Car',
-        status: true,
-        name: req.session.name
-      },
-      err: null,
-      register: null
+    Country.findAll({
+      order:[['name', 'ASC']],
+      attributes: ['name'],
+      group: ['name']
+    })
+    .then(countries => {
+      res.render('pages/dashboard/addCar', {
+        page: {
+          title: 'Add New Car',
+          status: true,
+          name: req.session.name
+        },
+        err: null,
+        register: null,
+        countries
+      })
     })
   }
 
@@ -108,7 +107,7 @@ class UserController {
 
   }
 
-  static addNewAuction({ params, body }, res) {
+  static addNewAuction({ params, body, session }, res) {
     Auction.create({
       CarId : params.id,
       finishTime: body.finishTime,
@@ -119,7 +118,15 @@ class UserController {
       res.redirect('/dashboard')
     })
     .catch(err => {
-      res.send(err)
+      res.render('pages/dashboard/addAuction', {
+        page: {
+          title: 'Add New Auction',
+          status: true,
+          name: session.name
+        },
+        register: body,
+        err: err.message
+      })
     })
   }
 

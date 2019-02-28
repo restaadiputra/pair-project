@@ -3,6 +3,17 @@
   <% include ../../includes/head %>
 <body>
   <% include ../../includes/navbar %>
+  <%
+  if(err !== null) {
+  %>
+  <div class="row">
+    <div class="twelve columns danger">
+      <center> <h5><%=err%></h5></center>
+    </div>
+  </div>
+  <%
+  }
+  %>
   <div class="container">
     <form action="/dashboard/add-auction/<%=register.id%>" method="post">
       <div class="row">
@@ -17,7 +28,7 @@
           <label for="finishTime">Put Into Auction Until</label>
           <input name="finishTime" class="u-full-width" type="datetime-local" placeholder="time and date" id="finishTime">
 
-          <label for="startPrice">Starting Price</label>
+          <label for="startPrice">Starting Price($)</label>
           <input name="startPrice" class="u-full-width" type="number" placeholder="put your initial price" id="startPrice">
 
         </div>

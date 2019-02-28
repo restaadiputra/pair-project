@@ -3,7 +3,14 @@ module.exports = (sequelize, DataTypes) => {
   const Auction = sequelize.define('Auction', {
     CarId: DataTypes.INTEGER,
     startTime: DataTypes.DATE,
-    finishTime: DataTypes.DATE,
+    finishTime: {
+      type: DataTypes.DATE,
+      validate: {
+        moreDays: function(value, next) {
+          if(value < new Date()) next(`Please choose more than 1 day`)
+        }
+      }
+    },
     startPrice: DataTypes.INTEGER,
     status: DataTypes.ENUM('open', 'close')
   }, {

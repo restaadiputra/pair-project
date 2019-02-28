@@ -1,6 +1,6 @@
 const { Auction, Bid, Car, User } = require('../models')
 const { sessionChecker } = require('../helpers/sessionChecker')
-
+const bcrypt = require('bcryptjs')
 class UserController {
   // login : method => get
   static loginForm(req, res, next) {
@@ -22,9 +22,15 @@ class UserController {
       }
     })
     .then(user => {
-      req.session.user = user.id;
-      req.session.name = user.name
-      res.redirect('/');
+      if(!user) {
+        throw new Error('Username not found')
+      } else if(!bcrypt.compareSync(req.body.password, user.password)) {
+        throw new Error('Password do not match')
+      } else {
+        req.session.user = user.id;
+        req.session.name = user.name
+        res.redirect('/');
+      }
     })
     .catch(err => {
       res.render('pages/login/login', {

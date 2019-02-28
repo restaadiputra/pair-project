@@ -3,28 +3,22 @@
   <% include ../../includes/head %>
 <body>
   <% include ../../includes/navbar %>
+  
   <%
   if(err !== null) {
   %>
   <div class="row">
-    <div class="twelve columns">
-      <%=err.message%>
+    <div class="twelve columns danger">
+      <center> <h5><%=err%></h5></center>
     </div>
   </div>
   <%
   }
   %>
   <div class="container">
+    
     <%
-    if(err !== null) {
-    %>
-    <div class="row">
-      <div class="six columns">
-        <h3><%=err%></h3>
-      </div>
-    </div>
-    <%
-    } else if(register !== null) {
+    if(register !== null) {
     %>
     <div class="row">
       <div class="six columns">
