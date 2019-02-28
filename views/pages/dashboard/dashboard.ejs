@@ -5,6 +5,41 @@
   <% include ../../includes/navbar %>
   <div class="container">
     <h1>DASHBOARD</h1>
+    <a class="button button-primary" href="/dashboard/add-new">Add New Car</a>
+    <hr>
+    <div class="row">
+    <%if(user.Cars.length > 0) {
+      user.Cars.forEach(car => {
+    %>
+      <div class="six columns">
+        <table class="u-full-width">
+          <tr>
+            <td>Name</td>
+            <td><%=car.name%></td>
+          </tr>
+          <tr>
+            <td>Brand</td>
+            <td><%=car.brand%></td>
+          </tr>
+          <tr>
+            <td>Fuel Type</td>
+            <td><%=car.fuelType%></td>
+          </tr>
+          <tr>
+            <td>Year of Production</td>
+            <td><%=car.yearProduction%></td>
+          </tr>
+          <tr>
+            <td>Origin</td>
+            <td><%=car.origin%></td>
+          </tr>
+        </table>
+        <a class="button button-primary" href="/auction/add/<%=car.id%>">Auction</a>
+
+      </div>
+      <%})
+    }%>
+  </div>
     
   </div>
 </body>
