@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <% include ../partials/header.ejs %>
+
+<body>
+
+    <% include ../partials/navbar.ejs %>
+
+    <title>Tempoe Doeloe</title>
+    <div class="row">
+        <div class="column" >
+            <form action="action_page.php">
+                <div class="container">
+                  <h1>Search Car</h1>
+                  <p>Please fill in this form to search car</p>
+                  <hr>
+                  <label for="car name"><b>Name</b></label>
+                  <input type="text" placeholder="Enter Name Car" name="name" required>
+                  <label for=""><b>Year</b></label>
+                  <input type="year" placeholder="Enter Year" name="year" required>
+                  <label for="price"><b>Price</b></label>
+                  <input type="price" placeholder="Enter Price" name="price" required>
+                  <hr>
+                  <button type="submit" class="search">Search</button>
+                </div>
+              
+              </form>
+        </div>
+        <div class="column">
+          <h1>Car List</h1>
+          <br><br>
+          <ul id="rig">
+            <li>
+                <a class="rig-cell" href="#">
+                    <img class="rig-img" src="./image/Ford-F-Series-Super-Duty.jpg">
+                    <span class="rig-overlay"></span>
+                    <span class="rig-text">Ford F Series Super Duty</span>
+                </a>
+            </li>
+            <li>
+                <a class="rig-cell" href="#">
+                    <img class="rig-img" src="./image/GMC-Sierra-Hybrid.jpg">
+                    <span class="rig-overlay"></span>
+                    <span class="rig-text">GMC Sierra Hybrid</span>
+                </a>
+            </li>
+            <li>
+                <a class="rig-cell" href="#">
+                    <img class="rig-img" src="./image/Lexus-ES.jpg">
+                    <span class="rig-overlay"></span>
+                    <span class="rig-text">Lexus-ES</span>
+                </a>
+            </li>
+            <li>
+                <a class="rig-cell" href="#">
+                    <img class="rig-img" src="./image/aston-martin-vantage.jpg">
+                    <span class="rig-overlay"></span>
+                    <span class="rig-text">Aston Martin Vantage</span>
+                </a>
+            </li>
+            <li>
+                <a class="rig-cell" href="#">
+                    <img class="rig-img" src="./image/dodge-stealth.jpg">
+                    <span class="rig-overlay"></span>
+                    <span class="rig-text">Dodge Stealth</span>
+                </a>
+            </li>
+            <li>
+              <a class="rig-cell" href="#">
+                  <img class="rig-img" src="./image/gmc-yukon-xl.jpg">
+                  <span class="rig-overlay"></span>
+                  <span class="rig-text">GMC Yukon XL</span>
+              </a>
+          </li>
+            <li>
+                <a class="rig-cell" href="#">
+                    <img class="rig-img" src="./image/mitsubishi-sigma.jpg">
+                    <span class="rig-overlay"></span>
+                    <span class="rig-text">Mitsubishi Sigma</span>
+                </a>
+            </li>
+            <li>
+                <a class="rig-cell" href="#">
+                    <img class="rig-img" src="./image/slk-class-mercedes.jpg">
+                    <span class="rig-overlay"></span>
+                    <span class="rig-text">SLK Class Mercedes</span>
+                </a>
+            </li>
+            <li>
+                <a class="rig-cell" href="#">
+                    <img class="rig-img" src="./image/toyota-solara.jpg">
+                    <span class="rig-overlay"></span>
+                    <span class="rig-text">Toyota Solara</span>
+                </a>
+            </li>
+            <li>
+                <a class="rig-cell" href="#">
+                    <img class="rig-img" src="./image/volkswagen-passat.png">
+                    <span class="rig-overlay"></span>
+                    <span class="rig-text">Volkswagen Passat</span>
+                </a>
+            </li>
+            <li>
+              <a class="rig-cell" href="#">
+                  <img class="rig-img" src="./image/chevy-impala.jpg">
+                  <span class="rig-overlay"></span>
+                  <span class="rig-text">Maecenas vitae</span>
+              </a>
+          </li>
+          <li>
+              <a class="rig-cell" href="#">
+                  <img class="rig-img" src="./image/ford-mustang-.jpg">
+                  <span class="rig-overlay"></span>
+                  <span class="rig-text">Proin Scelerisque</span>
+              </a>
+          </li>
+        </ul>
+      </div>      
+      
+</body>
+
+<% include ../partials/footer.ejs %>
+
+</html>

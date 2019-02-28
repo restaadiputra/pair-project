@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <% include ../partials/header.ejs %>
+
+<body>
+
+    <% include ../partials/navbar.ejs %>
+
+    <form action="addnewcar.php">
+        <div class="container">
+            <h1>Add Car</h1>
+            <p>Please fill in this form to add a new car.</p>
+            <hr>
+
+            <label for="name"><b>Name</b></label>
+            <input type="name" placeholder="Enter Name" name="name" required>
+
+            <label for="brand"><b>Brand</b></label>
+            <input type="brand" placeholder="Enter Brand" name="brand" required>
+
+            <label for="fuelType"><b>Fuel Type</b></label>
+            <input type="fuelType" placeholder="Fuel Type" name="fuelType" required>
+
+            <label for="yearProduction"><b>Year</b></label>
+            <input type="yearProduction" placeholder="Enter Year" name="yearProduction" required>
+
+            <label for="origin"><b>Origin</b></label>
+            <input type="origin" placeholder="Enter Origin" name="origin" required>
+            <hr>
+
+            <button type="submit" class="submit">Add Car</button>
+        </div>
+
+    </form>
+</body>
+
+<% include ../partials/footer.ejs %>
+
+</html>
