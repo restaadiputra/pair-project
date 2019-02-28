@@ -1,7 +1,10 @@
+const hashpassword = require('../helpers/bcrypt').hashPassword
+
 'use strict';
 const bcrypt = require('bcryptjs')
 const Op = require('sequelize').Op
 module.exports = (sequelize, DataTypes) => {
+  const Op = sequelize.Op
   const User = sequelize.define('User', {
     role: DataTypes.STRING,
     name: DataTypes.STRING,
