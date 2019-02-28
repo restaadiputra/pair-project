@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <% include ../../includes/head %>
+<body>
+  <% include ../../includes/navbar %>
+  <div class="container">
+    <form action="/auction/<%=auctionId%>" method="post">
+      <div class="row">
+        <div class="six columns offset-by-three u-cf">
+          
+          <%
+          if(!limit) {
+          %>
+          <h1>Bid has been close</h1>
+          <%
+          } else if(!page.status) {
+          %>
+          <h1>Need login to Place Bid</h1>
+          <%
+          } else {
+          %>
+          <h1>Place Your Bid</h1>
+          <%
+          }
+          %>
+
+          <label for="name">Car Name</label>
+          <input name="name" class="u-full-width" type="text" placeholder="car name" id="name" value="<%=car.name%>" disabled>
+          
+          <label for="brand">Car Brand</label>
+          <input name="brand" class="u-full-width" type="text" placeholder="car brand" id="brand" value="<%=car.brand%>" disabled>
+          
+          <label for="lastbet">Last Bid</label>
+          <%
+          if(bid === null) {
+          %>
+          <input name="lastbet" class="u-full-width" type="number" id="lastbet" value="<%=startPrice%>" disabled>
+          
+          <%
+          if(limit && page.status) {
+          %>
+          <label for="bidPrice">Your Bid</label>
+          <input name="bidPrice" class="u-full-width" type="number" id="bidPrice" min="<%=startPrice%>" step="1">
+          <%
+          }
+          %>
+          <%
+          } else {
+          %>
+          <input name="lastbet" class="u-full-width" type="number" id="lastbet" value="<%=bid.bidPrice%>" disabled>
+          <%if(limit && page.status) {
+            %>
+          <label for="bidPrice">Your Bid</label>
+          <input name="bidPrice" class="u-full-width" type="number" placeholder="bet here" id="bidPrice" min="<%=bid.bidPrice%>" step="1" >
+          <%
+          }
+          
+          }
+          %>
+
+          
+
+        </div>
+
+        <%if(page.status && limit) {%>
+        <div class="six columns offset-by-three">
+          <input class="button-primary" type="submit" value="Auction">
+          <a class="button button-primary" href="/">Cancel</a>
+        </div>
+        <%} else {%>
+          <div class="six columns offset-by-three">
+        
+          <button disabled>Bid</button>
+          <a class="button button-primary" href="/">Cancel</a>
+        </div>
+        <%}%>
+
+
+      </div>
+    </form>
+
+  </div>
+</body>
+</html>

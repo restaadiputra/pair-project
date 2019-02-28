@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <% include ../../includes/head %>
+<body>
+  <% include ../../includes/navbar %>
+  <%
+  if(err !== null) {
+  %>
+  <div class="row">
+    <div class="twelve columns danger">
+      <center> <h5><%=err%></h5></center>
+    </div>
+  </div>
+  <%
+  }
+  %>
+  <div class="container">
+    <form action="/dashboard/add-auction/<%=register.id%>" method="post">
+      <div class="row">
+        <div class="six columns offset-by-three u-cf">
+          <h1>Add Auction</h1>
+          <label for="name">Car Name</label>
+          <input name="name" class="u-full-width" type="text" placeholder="car name" id="name" value="<%=register === null ? '' : register.name%>" disabled>
+          
+          <label for="brand">Car Brand</label>
+          <input name="brand" class="u-full-width" type="text" placeholder="car brand" id="brand" value="<%=register === null ? '' : register.brand%>" disabled>
+          
+          <label for="finishTime">Put Into Auction Until</label>
+          <input name="finishTime" class="u-full-width" type="datetime-local" placeholder="time and date" id="finishTime">
+
+          <label for="startPrice">Starting Price($)</label>
+          <input name="startPrice" class="u-full-width" type="number" placeholder="put your initial price" id="startPrice">
+
+        </div>
+        <div class="six columns offset-by-three">
+          <input class="button-primary" type="submit" value="Auction">
+          <a class="button button-primary" href="/dashboard">Cancel</a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</body>
+</html>

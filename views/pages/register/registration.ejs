@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <% include ../../includes/head %>
+<body>
+  <% include ../../includes/navbar %>
+  <%
+  if(err !== null) {
+  %>
+  <div class="row">
+    <div class="twelve columns danger">
+      <center> <h5><%=err%></h5></center>
+    </div>
+  </div>
+  <%
+  }
+  %>
+  <div class="container">
+    <%
+    if(register !== null) {
+    %>
+    <div class="row">
+      <div class="six columns">
+        <h3><%=register%></h3>
+      </div>
+    </div>
+    <%
+    }
+    %>
+    <!-- login form -->
+    <form action="" method="post">
+      <div class="row">
+        <div class="six columns offset-by-three u-cf">
+          <h1>Register</h1>
+          <label for="name">Full Name</label>
+          <input name="name" class="u-full-width" type="text" placeholder="full name" id="name" value="<%=register === null ? '' : register.name%>">
+          <label for="username">Username</label>
+          <input name="username" class="u-full-width" type="text" placeholder="username" id="username" value="<%=register === null ? '' : register.username%>">
+          <label for="password">Password</label>
+          <input name="password" class="u-full-width" type="password" placeholder="password" id="password" value="<%=register === null ? '' : register.password%>">
+          <label for="email">Email</label>
+          <input name="email" class="u-full-width" type="email" placeholder="email" id="email" value="<%=register === null ? '' : register.email%>">
+        </div>
+        <div class="six columns offset-by-three">
+          <input class="button-primary" type="submit" value="Register">
+          <a class="button button-primary" href="/">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <% include ../../includes/head %>
+<body>
+  <% include ../../includes/navbar %>
+  <div class="container">
+    <form action="/dashboard/add-new" method="post"  enctype="multipart/form-data">
+      <div class="row">
+        <div class="six columns offset-by-three u-cf">
+          <h1>Add New Car</h1>
+          <label for="name">Car Name</label>
+          <input name="name" class="u-full-width" type="text" placeholder="car name" id="name" value="<%=register === null ? '' : register.name%>">
+          
+          <label for="brand">Car Brand</label>
+          <input name="brand" class="u-full-width" type="text" placeholder="car brand" id="brand" value="<%=register === null ? '' : register.brand%>">
+          
+          <label for="fuelType">Fuel Type</label>
+          <input name="fuelType" class="u-full-width" type="text" placeholder="fuel type" id="fuelType" value="<%=register === null ? '' : register.fuelType%>">
+          
+          <label for="yearProduction">Year of Production</label>
+          <input name="yearProduction" class="u-full-width" type="number" min="1800" max="2099" step="1" placeholder="year production" id="yearProduction" value="<%=register === null ? '' : register.yearProduction%>">
+
+          <label for="origin">Origin Country</label>
+          
+          <select name="origin" id="origin">
+              <option disabled selected>origin</option>
+              <%
+              countries.forEach(c => {
+              %>
+              <option value="<%=c.name%>"><%=c.name%></option>
+              <%})%>
+            </select>
+
+
+
+
+          <label for="img">Image</label>
+          <input name="img" class="u-full-width" type="file" id="img" >          
+
+        </div>
+        <div class="six columns offset-by-three">
+          <input class="button-primary" type="submit" value="Register">
+          <a class="button button-primary" href="/dashboard">Cancel</a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</body>
+</html>
