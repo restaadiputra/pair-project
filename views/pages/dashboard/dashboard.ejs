@@ -4,15 +4,34 @@
 <body>
   <% include ../../includes/navbar %>
   <div class="container">
-    <h1>DASHBOARD</h1>
+    <h1>Dashboard</h1>
+    <hr>
     <a class="button button-primary" href="/dashboard/add-new">Add New Car</a>
     <hr>
-    <div class="row">
-    <%if(user.Cars.length > 0) {
+    <%
+      if(user.Cars.length > 0) {
+      let count = 0
       user.Cars.forEach(car => {
+        if(count%2 === 0) {
+    %>
+      <div class="row">
+    <%
+      }
+
+
     %>
       <div class="six columns">
         <table class="u-full-width">
+          <div class="row">
+            <div class="twelve column">
+              <a href="/dashboard/add-auction/<%=car.id%>">
+                <img class="u-max-full-width img-center" src="/upload/<%=car.filePath === null ? 'placeholder.png' : car.filePath%>" alt="img">
+              </a>
+            </div>
+          </div>
+          <br><br>
+          <tr>
+          </tr>
           <tr>
             <td>Name</td>
             <td><%=car.name%></td>
@@ -33,11 +52,68 @@
             <td>Origin</td>
             <td><%=car.origin%></td>
           </tr>
-        </table>
-        <a class="button button-primary" href="/auction/add/<%=car.id%>">Auction</a>
+          <%
+          if(car.Auctions.length > 0) {
+          %>
+          
+          <tr>
+            <td>Auction At</td>
+            <td><%=car.Auctions[0].startTime%></td>
+          </tr>
 
+          <tr>
+            <td>Finish At</td>
+            <td><%=car.Auctions[0].finishTime%></td>
+          </tr>
+
+          <tr>
+            <td>Starting Price</td>
+            <td><%=car.Auctions[0].startPrice%></td>
+          </tr>
+
+          <%
+          }
+          %>
+
+
+        </table>
+        <%
+        if(car.status === 'auctioned') {
+        %>
+        <button disabled>Auctioned</button>
+        <a class="button button-primary" href="/dashboard/show-auction/<%=car.id%>">Auction Detail</a>
+        
+        
+        <%
+        } else if(car.status === 'sold') {
+        %>
+        <button disabled>Sold</button>
+        <a class="button button-primary" href="/dashboard/show-auction/<%=car.id%>">Auction Detail</a>
+        <%
+        } else {
+        %>
+        <a class="button button-primary" href="/dashboard/add-auction/<%=car.id%>">Auction</a>
+        <%
+        }
+        %>
+
+
+
+        
       </div>
-      <%})
+    <%
+      if(count%2 === 1) {
+    %>
+      </div>
+      <hr>
+
+    <%
+      }
+      count++
+    %>
+
+
+    <%})
     }%>
   </div>
     

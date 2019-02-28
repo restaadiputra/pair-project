@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <% include ../../includes/head %>
+<body>
+  <% include ../../includes/navbar %>
+  <div class="container">
+    <h1>Detail Bid</h1>
+    <hr>
+   
+  <div>
+    <%
+    if(userData.Auctions.length > 0){
+      userData.Auctions.forEach(e => {
+    %>
+    
+    <%
+    if(new Date() > e.finishTime) {
+    %>
+    <h5><a href="/auction/<%=e.id%>">Auction ID: <%=e.id%></a> | Status: Close</h5>
+    <%
+    } else {
+    %>
+    <h5><a href="/auction/<%=e.id%>">Auction ID: <%=e.id%></a> | Status: Open</h5>
+    <%
+    }
+    %>
+
+    <table class="u-full-width">
+      <tr>
+        <th>Bid Price</th>
+        <th>Status</th> 
+      </tr>
+      <%
+      bids.forEach(b => {
+        if(b.AuctionId === e.id) {
+      %>
+
+      <tr>
+        <th><%=b.numberFormat()%></th>
+        <th><%=b.status%></th>
+      </tr>
+      <%
+        }
+      })
+      %>
+
+
+
+    </table>
+    <%
+      })
+    }
+    %>
+    <h3></h3>
+    <table class="u-full-width">
+     
+    </table>
+  </div>
+    
+  </div>
+</body>
+</html>

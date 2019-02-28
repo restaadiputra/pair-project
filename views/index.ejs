@@ -1,11 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <% include ./includes/head %>
+<% include ./includes/head %>
+
 <body>
   <% include ./includes/navbar %>
   <div class="container">
-    <h1>HOME</h1>
+    <h1>Auction Gallery</h1>
+    <hr>
+    <%
+    if(cars.length > 0) {
+    let count = 0
+    cars.forEach(car => {
+      if(count%2 === 0) {
+    %><div class="row"><%}%>
+      <div class="six columns">
+        <table class="u-full-width">
+          <div class="row">
+              <div class="twelve column">
+                <a href="/auction/<%=car.Auctions[0].id%>">
+                  <img class="u-max-full-width img-center" src="/upload/<%=car.filePath === null ? 'placeholder.png' : car.filePath%>" alt="img">
+                </a>
+              </div>
+            </div>
+            <br><br>
+          <tr>
+            <td>Name</td>
+            <td><%=car.name%></td>
+          </tr>
+          <tr>
+            <td>Brand</td>
+            <td><%=car.brand%></td>
+          </tr>
+          <tr>
+            <td>Fuel Type</td>
+            <td><%=car.fuelType%></td>
+          </tr>
+          <tr>
+            <td>Year of Production</td>
+            <td><%=car.yearProduction%></td>
+          </tr>
+          <tr>
+            <td>Origin</td>
+            <td><%=car.origin%></td>
+          </tr>
+          <tr>
+            <td>Auction At</td>
+            <td><%=car.Auctions[0].startTime%></td>
+          </tr>
+          <tr>
+            <td>Finish At</td>
+            <td><%=car.Auctions[0].finishTime%></td>
+          </tr>
+        </table>
+        
+        <a class="button button-primary" href="/auction/<%=car.Auctions[0].id%>">View Detail</a>
+        <%
+     
+      %>
+      </div>
+      <%
+    if(count%2 === 1) {
+    %>
+    </div>
+    <hr>
+
+    <%
+    }
+    count++
+  %>
+
+
+    <%})
+  }%>
+
+
+
   </div>
-  
+
+
+
+
 </body>
+
 </html>

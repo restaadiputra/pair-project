@@ -1,6 +1,6 @@
 const { Auction, Bid, Car, User } = require('../models')
 const { sessionChecker } = require('../helpers/sessionChecker')
-
+const bcrypt = require('bcryptjs')
 class UserController {
   // login : method => get
   static loginForm(req, res, next) {
@@ -15,20 +15,32 @@ class UserController {
   }
 
   // login : method => post
-  static loginCheck(req, res, next) {
+  static loginCheck(req, res) {
     User.findOne({
       where: {
-        username: req.body.username,
-        password: req.body.password
+        username: req.body.username
       }
     })
     .then(user => {
-      req.session.user = user.id;
-      req.session.name = user.name
-      res.redirect('/');
+      if(!user) {
+        throw new Error('Username not found')
+      } else if(!bcrypt.compareSync(req.body.password, user.password)) {
+        throw new Error('Password do not match')
+      } else {
+        req.session.user = user.id;
+        req.session.name = user.name
+        res.redirect('/');
+      }
     })
     .catch(err => {
-      res.send(`error => ${err}`)
+      res.render('pages/login/login', {
+        page: {
+          title: 'Login',
+          status: false
+        },
+        err: err.message,
+        register: null
+      })
     })
   }
 
@@ -58,18 +70,22 @@ class UserController {
       })
     })
     .catch(err => {
-      // res.render('pages/register/registration', {
+      res.render('pages/register/registration', {
+        page: {
+          title: 'Register New Account',
+          status: false
+        },
+        err: err.message,
+        register: null
+      })
+
+      // res.send({
+      //   page: {
+      //     title: 'Register User'
+      //   },
       //   err: err.message,
       //   form: body
       // })
-
-      res.send({
-        page: {
-          title: 'Register User'
-        },
-        err: err.message,
-        form: body
-      })
     })
   }
 

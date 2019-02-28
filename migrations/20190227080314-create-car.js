@@ -23,6 +23,9 @@ module.exports = {
       origin: {
         type: Sequelize.STRING
       },
+      status: {
+        type: Sequelize.ENUM('auctioned', 'sold')
+      },
       UserId: {
         type: Sequelize.INTEGER,
         onDelete: 'SET NULL',
@@ -30,6 +33,9 @@ module.exports = {
           model: 'Users',
           key: 'id'
         }
+      },
+      filePath: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

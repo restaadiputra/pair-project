@@ -27,6 +27,9 @@ module.exports = {
       bidPrice: {
         type: Sequelize.INTEGER
       },
+      status: {
+        type: Sequelize.ENUM('win', 'lose')
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
