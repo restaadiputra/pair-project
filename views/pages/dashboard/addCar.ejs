@@ -4,7 +4,7 @@
 <body>
   <% include ../../includes/navbar %>
   <div class="container">
-    <form action="/dashboard/add-new" method="post">
+    <form action="/dashboard/add-new" method="post"  enctype="multipart/form-data">
       <div class="row">
         <div class="six columns offset-by-three u-cf">
           <h1>Add New Car</h1>
@@ -22,6 +22,9 @@
 
           <label for="origin">Origin Country</label>
           <input name="origin" class="u-full-width" type="text" placeholder="origin" id="origin" value="<%=register === null ? '' : register.origin%>">
+
+          <label for="myImage">Image</label>
+          <input name="myImage" class="u-full-width" type="file" id="myImage" >          
 
         </div>
         <div class="six columns offset-by-three">

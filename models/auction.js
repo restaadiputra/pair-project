@@ -6,7 +6,29 @@ module.exports = (sequelize, DataTypes) => {
     finishTime: DataTypes.DATE,
     startPrice: DataTypes.INTEGER,
     status: DataTypes.ENUM('open', 'close')
-  }, {});
+  }, {
+    hooks: {
+      beforeSave : (auction, options) => {
+        auction.startTime = new Date()
+        auction.status = 'open'
+      },
+      afterSave : (auction, options) => {
+        return sequelize.models.Car.update({
+          status: 'auctioned'
+        }, {
+          where: {
+            id: auction.CarId
+          }
+        })
+        .then(() => {
+          console.log('update sukses')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+      }
+    }
+  });
   Auction.associate = function(models) {
     Auction.belongsTo(models.Car, {
       foreignKey: 'CarId',

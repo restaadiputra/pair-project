@@ -3,6 +3,17 @@
   <% include ../../includes/head %>
 <body>
   <% include ../../includes/navbar %>
+  <%
+  if(err !== null) {
+  %>
+  <div class="row">
+    <div class="twelve columns">
+      <%=err.message%>
+    </div>
+  </div>
+  <%
+  }
+  %>
   <div class="container">
     <%
     if(err !== null) {
@@ -29,10 +40,10 @@
         <div class="six columns offset-by-three u-cf">
           <h1>Login</h1>
           <label for="username">Username</label>
-          <input name="username" class="u-full-width" type="text" placeholder="username" id="username">
+          <input name="username" class="u-full-width" type="text" placeholder="username" id="username" required>
           <br><br>
           <label for="password">Password</label>
-          <input name="password" class="u-full-width" type="password" placeholder="password" id="password">
+          <input name="password" class="u-full-width" type="password" placeholder="password" id="password" required>
           <br><br>
           <input class="button-primary" type="submit" value="Login">
         </div>

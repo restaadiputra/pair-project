@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <% include ../../includes/head %>
+<body>
+  <% include ../../includes/navbar %>
+  <div class="container">
+    <h1>Detail Auction</h1>
+    <hr>
+   
+  <div>
+    <table class="u-full-width">
+      <tr>
+        <th>Name</th>
+        <th>Bid Price</th>
+      </tr>
+      <%
+      if(data.Users.length > 0) {
+        data.Users.forEach(user => {
+      %>
+      <tr>
+        <td><%=user.name%></td>
+        <td><%=user.Bid.numberFormat()%></td>
+      </tr>
+      <%
+        })
+      }
+      %>
+    </table>
+  </div>
+    
+  </div>
+</body>
+</html>

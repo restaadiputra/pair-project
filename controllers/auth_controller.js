@@ -15,11 +15,10 @@ class UserController {
   }
 
   // login : method => post
-  static loginCheck(req, res, next) {
+  static loginCheck(req, res) {
     User.findOne({
       where: {
-        username: req.body.username,
-        password: req.body.password
+        username: req.body.username
       }
     })
     .then(user => {
@@ -28,7 +27,14 @@ class UserController {
       res.redirect('/');
     })
     .catch(err => {
-      res.send(`error => ${err}`)
+      res.render('pages/login/login', {
+        page: {
+          title: 'Login',
+          status: false
+        },
+        err: err.message,
+        register: null
+      })
     })
   }
 
@@ -58,18 +64,22 @@ class UserController {
       })
     })
     .catch(err => {
-      // res.render('pages/register/registration', {
+      res.render('pages/register/registration', {
+        page: {
+          title: 'Register New Account',
+          status: false
+        },
+        err: err.message,
+        register: null
+      })
+
+      // res.send({
+      //   page: {
+      //     title: 'Register User'
+      //   },
       //   err: err.message,
       //   form: body
       // })
-
-      res.send({
-        page: {
-          title: 'Register User'
-        },
-        err: err.message,
-        form: body
-      })
     })
   }
 
