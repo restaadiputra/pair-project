@@ -3,25 +3,23 @@
   <div class="container">
     <ul class="navbar-list u-pull-left">
       <li class="navbar-item"><a class="navbar-link" href="/">Home</a></li>
+      <%if(page.status) {%>
+      <li class="navbar-item"><a class="navbar-link" href="/dashboard">Dashboard</a></li>
+      <%}%>
     </ul>
     
     <div class="navbar-list u-pull-right">
-      
+      <%console.log(page.status)%>
     </div>
     <ul class="navbar-list u-pull-right">
+      <%if(page.status) {%>
       <li class="navbar-item"><h4 class="navbar-link"><%=page.name%></h4></li>
-      <%
-      if(page.status) {
-      %>
       <li class="navbar-item"><a class="navbar-link" href="/logout">Logout</a></li>
-      <%
-      } else {
-      %>
+      
+      <%} else {%>
       <li class="navbar-item"><a class="navbar-link" href="/login">Login</a></li>
       <li class="navbar-item"><a class="navbar-link" href="/register">Register</a></li>
-      <%
-      }
-      %>
+      <%}%>
     </ul>
   </div>
 </nav>

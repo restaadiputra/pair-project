@@ -24,7 +24,8 @@ class UserController {
     })
     .then(user => {
       req.session.user = user.id;
-      res.redirect('/dashboard');
+      req.session.name = user.name
+      res.redirect('/');
     })
     .catch(err => {
       res.send(`error => ${err}`)
