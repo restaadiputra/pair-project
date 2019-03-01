@@ -5,11 +5,13 @@ module.exports = (sequelize, DataTypes) => {
     startTime: DataTypes.DATE,
     finishTime: {
       type: DataTypes.DATE,
-      validate: {
-        moreDays: function(value, next) {
-          if(value < new Date()) next(`Please choose more than 1 day`)
-        }
-      }
+      // validate: {
+      //   moreDays: function(value, next) {
+      //     if(value < new Date()) {
+      //       throw new Error(`Please choose more than 1 day`)
+      //     }
+      //   }
+      // }
     },
     startPrice: DataTypes.INTEGER,
     status: DataTypes.ENUM('open', 'close')
@@ -18,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       beforeSave : (auction, options) => {
         auction.startTime = new Date()
         auction.status = 'open'
+        console.log('sukses')
       },
       afterSave : (auction, options) => {
         return sequelize.models.Car.update({

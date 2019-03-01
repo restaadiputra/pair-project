@@ -108,16 +108,18 @@ class UserController {
   }
 
   static addNewAuction({ params, body, session }, res) {
+    console.log('masuk disini')
     Auction.create({
       CarId : params.id,
       finishTime: body.finishTime,
       startPrice: body.startPrice
     })
     .then(() => {
-      console.log('masuk')
+      console.log('masuk then')
       res.redirect('/dashboard')
     })
     .catch(err => {
+      console.log('masuk catch')
       res.render('pages/dashboard/addAuction', {
         page: {
           title: 'Add New Auction',
